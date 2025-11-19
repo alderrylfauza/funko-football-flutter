@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:funko_shop_mobile/menu.dart';
+import 'package:funko_shop_mobile/screens/login.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,15 +12,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Football FunkoPop Shop',
-      theme: ThemeData(
-        // This sets the color scheme for the whole app
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
-        useMaterial3: true,
+    return Provider(
+      create: (_) {
+        CookieRequest request = CookieRequest();
+        return request;
+      },
+      child: MaterialApp(
+        title: 'Football FunkoPop Shop',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+          useMaterial3: true,
+        ),
+        // Change home to LoginPage
+        home: const LoginPage(),
       ),
-      // This points to the MyHomePage widget inside menu.dart
-      home: MyHomePage(),
     );
   }
 }
